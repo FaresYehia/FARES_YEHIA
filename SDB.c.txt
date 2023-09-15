@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../SDB.h"
+#include "../STD.h"
+#define maxStudent 10
+#define minStudent 3
+student dataBase [maxStudent];
+static uint32 counter=0;
+
+bool SDB_IsFull (){
+return counter==maxStudent;
+}
+uint8 SDB_GetUsedSize(){
+if(counter<3&&counter>10){
+    printf("Sorry the Minimum dataBase is 3 and Maximum 10\n");
+}
+else{
+    printf("The Size is : ");
+}
+return counter;
+}
+bool SDB_AddEntry(){
+
+    student newstudent;
+    if(SDB_IsFull()){
+        return false;}
+        else{
+
+printf("ID:");
+scanf("%d",&newstudent.Student_ID);
+printf("Year:");
+scanf("%d",&newstudent.Student_year);
+printf("Course1_ID:");
+scanf("%d",&newstudent.Course1_ID);
+printf("Course1_grade:");
+scanf("%d",&newstudent.Course1_grade);
+printf("Course2_ID:");
+scanf("%d",&newstudent.Course2_ID);
+printf("Course2_grade:");
+scanf("%d",&newstudent.Course2_grade);
+printf("Course3_ID:");
+scanf("%d",&newstudent.Course3_ID);
+printf("Course3_grade:");
+scanf("%d",&newstudent.Course3_grade);
+dataBase[counter]=newstudent;
+ counter++;
+ return true;
+        }
+
+
+}
+void SDB_DeletEntry (uint32 id){
+
+    for(uint32 i=0;i<counter;i++){
+        if(dataBase[i].Student_ID==id){
+            for(uint32 k=i+1;k<counter;k++){
+                dataBase[k-1]=dataBase[k];
+
+                            }
+counter--;
+printf("Delete successfully .\n");
+        }
+        else{
+            printf("The ID is NOT EXIST .\n");
+        }
+
+    }
+
+}
+bool SDB_ReadEntry (uint32 id){
+
+
+uint32 i=0;
+        for(i=0;i<counter;i++){
+        if(dataBase[i].Student_ID==id){
+        printf("\n ID: %d\n",dataBase[i].Student_ID);
+        printf(" Year: %d\n",dataBase[i].Student_year);
+        printf(" Course1_ID: %d\n",dataBase[i].Course1_grade);
+        printf(" Course1_grade: %d\n",dataBase[i].Course1_ID);
+        printf(" Course2_ID: %d\n",dataBase[i].Course2_ID);
+        printf(" Course2_grade: %d\n",dataBase[i].Course2_grade);
+        printf(" Course3_ID: %d\n",dataBase[i].Course3_ID);
+        printf(" Course3_grade: %d\n",dataBase[i].Course3_grade);
+        return true;
+
+
+        }
+
+}
+if(dataBase[i].Student_ID!=id){
+            printf("The ID is not EXIST .\n");
+
+        }
+return false;
+}
+void SDB_GetList (uint8 *count, uint32 *list[maxStudent]){
+
+*count=counter;
+for(int i=0;i<counter;i++){
+        list[i]=&dataBase[i].Student_ID;
+        if(counter<3&&counter>10){
+    printf("Sorry the Minimum dataBase is 3 and Maximum 10\n");
+    }
+  }
+
+}
+bool SDB_IsIdExist (uint32 id){
+for(int i=0;i<counter;i++){
+    if(dataBase[i].Student_ID==id){
+        return true;
+    }
+}
+    return false;
+
+}
